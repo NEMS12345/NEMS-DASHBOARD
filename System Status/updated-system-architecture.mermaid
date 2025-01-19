@@ -1,0 +1,66 @@
+graph TB
+    subgraph "Frontend Layer"
+        Next["Next.js App Router"]
+        RC["React Components"]
+        RQ["React Query"]
+        Auth["Auth Components"]
+        MW["Middleware"]
+        IND["Industry Components"]
+        ML["ML Components"]
+    end
+
+    subgraph "Data Layer"
+        SB["Supabase"]
+        DB[("Database")]
+        RT["Enhanced Realtime"]
+        AuthDB["Auth Service"]
+        Cache["Smart Cache"]
+        MLStore["Model Store"]
+    end
+
+    subgraph "ML Layer"
+        Training["Training Pipeline"]
+        Inference["Inference Engine"]
+        Monitor["Model Monitor"]
+        Validate["Model Validation"]
+    end
+
+    subgraph "Industry Processing"
+        MFG["Manufacturing"]
+        MED["Medical"]
+        BAK["Bakery"]
+        WH["Warehouse"]
+    end
+
+    subgraph "Integration Layer"
+        Claude["Claude AI"]
+        Monitor["Performance Monitor"]
+        Security["Security Monitor"]
+        Audit["Audit Logger"]
+    end
+
+    Next --> RC
+    RC --> RQ
+    RC --> IND
+    RC --> ML
+    RQ --> SB
+    Auth --> AuthDB
+    MW --> Auth
+    SB --> DB
+    RT --> Cache
+    Cache --> ML
+
+    Training --> MLStore
+    Inference --> Cache
+    Monitor --> MLStore
+    Validate --> Training
+
+    MFG --> Training
+    MED --> Training
+    BAK --> Training
+    WH --> Training
+
+    Claude --> Inference
+    Monitor --> SB
+    Security --> AuthDB
+    Audit --> DB
